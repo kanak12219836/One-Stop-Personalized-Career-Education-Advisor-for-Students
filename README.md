@@ -39,5 +39,5 @@ Build customized college recommendations.
 Impact
 Enables students in drawing empirical decisions on academic matters, and lessens confusion and career orientation.
 
->[?] Run
+->Run
 python Train_.py
