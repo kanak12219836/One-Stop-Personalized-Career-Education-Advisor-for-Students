@@ -1274,3 +1274,39 @@ print("\nTop 5 Recommended Colleges for the Student:")
 for i, (college, score) in enumerate(top_colleges, 1):
     print(f"{i}. {college} (Suitability Score: {score:.2f})")
 
+import joblib
+
+# Save stream recommender model with compression
+joblib.dump(stream_recommender_model, "stream_model.pkl", compress=3)
+
+# Save admission predictor model with compression
+joblib.dump(admission_predictor_model, "admission_model.pkl",compress=3)
+
+# Save scaler (important!)
+joblib.dump(scaler_adm, "scaler.pkl",compress=3)
+
+print("✅ Models saved successfully with compression!")
+
+
+
+
+
+import os
+
+# Get the file sizes
+stream_model_size = os.path.getsize('stream_model.pkl')
+admission_model_size = os.path.getsize('admission_model.pkl')
+scaler_size = os.path.getsize('scaler.pkl')
+
+print(f"Size of stream_model.pkl: {stream_model_size / (1024*1024):.2f} MB")
+print(f"Size of admission_model.pkl: {admission_model_size / (1024*1024):.2f} MB")
+print(f"Size of scaler.pkl: {scaler_size / (1024*1024):.2f} MB")
+
+from google.colab import files
+files.download("stream_model.pkl")
+files.download("admission_model.pkl")
+files.download("scaler.pkl")
+
+model = joblib.load("stream_model.pkl")
+model = joblib.load("admission_model.pkl")
+model = joblib.load("scaler.pkl")
